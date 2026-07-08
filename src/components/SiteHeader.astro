@@ -20,11 +20,13 @@ function stripTrailingSlash(value: string) {
 
 function isActive(item: NavItem) {
   if (item.external) return false;
-  const target = item.match ?? item.href;
+  const normalizedPathname = stripTrailingSlash(pathname);
+  const normalizedTarget = stripTrailingSlash(item.match ?? item.href);
   if (item.activeMode === 'prefix') {
-    return stripTrailingSlash(pathname).startsWith(stripTrailingSlash(target));
+    if (normalizedTarget === '/') return normalizedPathname === '/';
+    return normalizedPathname === normalizedTarget || normalizedPathname.startsWith(`${normalizedTarget}/`);
   }
-  return stripTrailingSlash(pathname) === stripTrailingSlash(target);
+  return normalizedPathname === normalizedTarget;
 }
 ---
 

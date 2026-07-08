@@ -1,6 +1,6 @@
 {
   "name": "@brainage04/astro-shell",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "type": "module",
   "private": false,
   "publishConfig": {
@@ -10,6 +10,7 @@
     "src"
   ],
   "exports": {
+    "./components/PageHeader.astro": "./src/components/PageHeader.astro",
     "./components/SiteLayout.astro": "./src/components/SiteLayout.astro",
     "./components/SiteHeader.astro": "./src/components/SiteHeader.astro",
     "./components/SiteFooter.astro": "./src/components/SiteFooter.astro",

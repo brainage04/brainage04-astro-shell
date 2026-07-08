@@ -1,0 +1,25 @@
+{
+  "name": "@brainage04/astro-shell",
+  "version": "0.1.0",
+  "type": "module",
+  "private": false,
+  "files": [
+    "src"
+  ],
+  "exports": {
+    "./components/SiteLayout.astro": "./src/components/SiteLayout.astro",
+    "./components/SiteHeader.astro": "./src/components/SiteHeader.astro",
+    "./components/SiteFooter.astro": "./src/components/SiteFooter.astro",
+    "./components/TerminalPanel.astro": "./src/components/TerminalPanel.astro",
+    "./global.css": "./src/styles/global.css"
+  },
+  "peerDependencies": {
+    "@webtui/css": ">=0.1.0",
+    "astro": ">=7.0.0"
+  },
+  "devDependencies": {
+    "@webtui/css": "0.1.9",
+    "astro": "7.0.3",
+    "typescript": "6.0.3"
+  }
+}

@@ -87,11 +87,19 @@ function isActive(item: NavItem) {
   @media (max-width: 520px) {
     nav {
       align-items: flex-start;
+      padding-block: 0.25rem;
     }
 
     .nav-links {
       width: 100%;
       justify-content: space-between;
+      gap: 0.4rem clamp(0.65rem, 4vw, 1rem);
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      min-height: 2.75rem;
+      align-items: center;
     }
   }
 </style>

@@ -12,6 +12,8 @@ export interface Props {
   homeTitle?: string;
   faviconHref?: string;
   faviconType?: string;
+  brandLabel?: string;
+  brandHref?: string;
 }
 
 const {
@@ -21,6 +23,8 @@ const {
   sourceHref,
   description,
   homeTitle = siteName,
+  brandLabel,
+  brandHref,
   faviconHref,
   faviconType,
 } = Astro.props;
@@ -38,7 +42,7 @@ const pageTitle = title === 'Home' ? homeTitle : `${title} | ${siteName}`;
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <SiteHeader items={navItems} pathname={Astro.url.pathname} />
+    <SiteHeader items={navItems} pathname={Astro.url.pathname} brandLabel={brandLabel} brandHref={brandHref} />
     <main id="main">
       <slot />
     </main>

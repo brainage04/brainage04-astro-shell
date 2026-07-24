@@ -14,7 +14,7 @@ export interface Props {
   brandHref?: string;
 }
 
-const { items, pathname, brandLabel, brandHref = '/' } = Astro.props;
+const { items, pathname, brandLabel, brandHref = '/' }: Props = Astro.props;
 
 function stripTrailingSlash(value: string) {
   return value === '/' ? value : value.replace(/\/$/, '');

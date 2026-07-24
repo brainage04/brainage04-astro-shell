@@ -10,9 +10,11 @@ export interface NavItem {
 export interface Props {
   items: readonly NavItem[];
   pathname: string;
+  brandLabel?: string;
+  brandHref?: string;
 }
 
-const { items, pathname } = Astro.props;
+const { items, pathname, brandLabel, brandHref = '/' } = Astro.props;
 
 function stripTrailingSlash(value: string) {
   return value === '/' ? value : value.replace(/\/$/, '');
@@ -31,7 +33,8 @@ function isActive(item: NavItem) {
 ---
 
 <header class="site-header">
-  <nav aria-label="Primary navigation">
+  <nav aria-label="Primary navigation" data-has-brand={brandLabel ? 'true' : undefined}>
+    {brandLabel && <a class="site-brand" href={brandHref}>{brandLabel}</a>}
     <div class="nav-links">
       {items.map((item) => {
         const active = isActive(item);
@@ -59,8 +62,30 @@ function isActive(item: NavItem) {
     width: min(100% - 1.5rem, var(--site-nav-width, 70rem));
     margin-inline: auto;
     display: flex;
+    align-items: center;
     justify-content: center;
+    gap: 1.5rem;
     padding-block: clamp(0.65rem, 1.4vw, 0.85rem);
+  }
+
+  nav[data-has-brand='true'] {
+    justify-content: space-between;
+  }
+
+  .site-brand {
+    color: var(--accent-cyan);
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .site-brand::before {
+    content: '> ';
+    color: var(--foreground2);
+  }
+
+  .site-brand:hover {
+    color: var(--foreground0);
   }
 
   .nav-links {
@@ -82,6 +107,16 @@ function isActive(item: NavItem) {
   .nav-links a[data-active='true'] {
     color: var(--foreground0);
     border-block-end-color: var(--accent-cyan);
+  }
+
+  @media (max-width: 700px) {
+    .site-brand {
+      display: none;
+    }
+
+    nav[data-has-brand='true'] {
+      justify-content: center;
+    }
   }
 
   @media (max-width: 520px) {
